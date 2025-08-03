@@ -1,6 +1,6 @@
-import React from "react";
-import InfiniteMenu from "./InfiniteMenu";
-import GridBack from "../../common/gridBack/GridBack";
+
+import InfiniteMenu from "../../blocks/Components/InfiniteMenu/InfiniteMenu";
+import GridBack from "../common/grid-back";
 import { motion } from "framer-motion";
 
 const items = [

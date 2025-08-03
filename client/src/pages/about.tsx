@@ -1,5 +1,4 @@
-import React from "react";
-import GridBack from "../components/common/gridBack/GridBack";  
+import GridBack from "../components/common/grid-back";  
 
 const AboutPage = () => {
   return (

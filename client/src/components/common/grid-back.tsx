@@ -1,5 +1,5 @@
-import React from 'react'
 import Grid from "/src/assets/Grid.png";
+
 const GridBack = () => {
   return (
     <div

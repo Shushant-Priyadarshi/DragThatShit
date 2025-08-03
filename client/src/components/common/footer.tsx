@@ -1,5 +1,5 @@
-import React from "react";
-import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from "react-icons/fa";
+
+import { FaTwitter, FaInstagram, FaLinkedin } from "react-icons/fa";
 
 const Footer = () => {
   return (
@@ -19,9 +19,9 @@ const Footer = () => {
         
         {/* Social Media Icons */}
         <div className="flex gap-4 text-gray-400 text-lg">
-          <a href="https://x.com/ceutical_"   target="__blank" className="hover:text-white"><FaTwitter /></a>
-          <a href="#" className="hover:text-white"  target="__blank"><FaInstagram /></a>
-          <a href="https://www.linkedin.com/in/shushant-priyadarshi/"  target="__blank" className="hover:text-white"><FaLinkedin /></a>
+          <a title="twitter" href="https://x.com/ceutical_"   target="__blank" className="hover:text-white"><FaTwitter /></a>
+          <a title="insta" href="#" className="hover:text-white"  target="__blank"><FaInstagram /></a>
+          <a title="linkedin" href="https://www.linkedin.com/in/shushant-priyadarshi/"  target="__blank" className="hover:text-white"><FaLinkedin /></a>
         </div>
       </div>
       

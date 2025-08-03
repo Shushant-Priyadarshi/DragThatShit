@@ -1,5 +1,4 @@
-import React from "react";
-import ScrollVelocity from "./ScrollVelocity";
+import ScrollVelocity from "../../blocks/TextAnimations/ScrollVelocity/ScrollVelocity";
 const BrandBelt = () => {
   return (
    <div>

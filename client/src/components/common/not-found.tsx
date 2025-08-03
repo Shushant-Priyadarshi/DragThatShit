@@ -1,6 +1,6 @@
-import React from "react";
-import FuzzyText from "./FuzzyText";
+
 import { Link, useLocation } from "react-router-dom";
+import FuzzyText from "../../blocks/TextAnimations/FuzzyText/FuzzyText";
 
 const NotFound = () => {
     const location = useLocation();

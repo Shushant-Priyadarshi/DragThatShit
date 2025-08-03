@@ -1,6 +1,5 @@
-import React from 'react';
 import { motion } from 'framer-motion';
-import GridBack from '../../common/gridBack/GridBack';
+import GridBack from '../common/grid-back';
 
 const steps = [
   {
