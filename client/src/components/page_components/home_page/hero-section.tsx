@@ -26,7 +26,7 @@ const HeroSection = () => {
               ,
             </div>
 
-            <span className="dts mb-10 ">DragThatShit</span>
+            <span className=" mb-10 ">DragThatShit</span>
           </div>
         </h1>
         <div className="text-center mt-10 mb-8 font-semibold flex items-center justify-center gap-10">

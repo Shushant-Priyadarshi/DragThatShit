@@ -1,17 +1,16 @@
 import { Route, Routes } from "react-router-dom";
 import Home from "./pages/home";
-import Profile from "./pages/profile";
+import DashBoard from "./pages/dashboard";
 import NotFound from "./components/page_components/common/not-found";
 
 function App() {
-  return(
-  <Routes>
-        <Route path='/' element={<Home/>} />
-         <Route path='/profile' element={<Profile/>} />
-         <Route path="*" element={<NotFound/>}/>
-  </Routes>
+  return (
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/dashBoard" element={<DashBoard />} />
+      <Route path="*" element={<NotFound />} />
+    </Routes>
   );
-
 }
 
 export default App;
