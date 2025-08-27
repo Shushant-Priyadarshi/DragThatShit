@@ -1,23 +1,17 @@
-import { Outlet } from "react-router-dom";
-import Navbar from "./components/common/navbar";
-import Footer from "./components/common/footer";
+import { Route, Routes } from "react-router-dom";
+import Home from "./pages/home";
+import Profile from "./pages/profile";
+import NotFound from "./components/page_components/common/not-found";
 
 function App() {
-  return (
-    <div>
-      {/* Navbar */}
-      <div>
-        <Navbar />
-      </div>
-
-      {/* Main Content */}
-      <div className=" px-4 mt-12">
-        <Outlet />
-      </div>
-
-      <Footer />
-    </div>
+  return(
+  <Routes>
+        <Route path='/' element={<Home/>} />
+         <Route path='/profile' element={<Profile/>} />
+         <Route path="*" element={<NotFound/>}/>
+  </Routes>
   );
+
 }
 
 export default App;

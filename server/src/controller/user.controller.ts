@@ -5,12 +5,13 @@ import { ApiResponse } from "../utils/ApiResponse";
 import { generateAccessToken, generateRefreshToken, verifyRefreshToken } from "../utils/jwt";
 import { googleClient } from "../app";
 import { Request, Response } from "express";
+import { StatusCodes } from "http-status-codes";
 
 //login user
 const loginUser = asyncHandler(async (req, res) => {
   const { credentials } = req.body;
   if (!credentials) {
-    throw new ApiError(400, "No google oauth credentials found");
+    throw new ApiError(StatusCodes.NOT_FOUND, "No google oauth credentials found");
   }
 
   const ticket = await googleClient.verifyIdToken({
@@ -19,11 +20,11 @@ const loginUser = asyncHandler(async (req, res) => {
   });
   const payload = ticket.getPayload();
   if (!payload) {
-    throw new ApiError(400, "Invalid Google OAuth payload");
+    throw new ApiError(StatusCodes.NOT_FOUND, "Invalid Google OAuth payload");
   }
   const { name, email, picture } = payload;
   if (!name || !email || !picture) {
-    throw new ApiError(400, "cannot get user info");
+    throw new ApiError(StatusCodes.NOT_FOUND, "cannot get user info");
   }
 
   const userExist = await prisma.user.findUnique({
@@ -42,7 +43,7 @@ const loginUser = asyncHandler(async (req, res) => {
     });
 
     if (!createdUser) {
-      throw new ApiError(500, "Something went wrong while saving the user");
+      throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, "Something went wrong while saving the user");
     }
     user = createdUser;
   } else {
@@ -75,17 +76,17 @@ const loginUser = asyncHandler(async (req, res) => {
   };
 
   return res
-    .status(200)
+    .status(StatusCodes.OK)
     .cookie("accessToken", accessToken, options)
     .cookie("refreshToken", refreshToken, options)
-    .json(new ApiResponse(200, userResponse, "Logged In successfully"));
+    .json(new ApiResponse(StatusCodes.OK, userResponse, "Logged In successfully"));
 });
 
 //logout
 const logoutUser = asyncHandler<Request,Response>(async (req, res) => {
   const userId = req.user?.id;
   if (!userId) {
-    throw new ApiError(400, "Invalid user");
+    throw new ApiError(StatusCodes.UNAUTHORIZED, "Invalid user");
   }
 
   await prisma.user.update({
@@ -99,8 +100,8 @@ const logoutUser = asyncHandler<Request,Response>(async (req, res) => {
   return res
     .clearCookie("accessToken")
     .clearCookie("refreshToken")
-    .status(200)
-    .json(new ApiResponse(200, "Logged out successfully"));
+    .status(StatusCodes.ACCEPTED)
+    .json(new ApiResponse(StatusCodes.ACCEPTED, "Logged out successfully"));
 });
 
 
@@ -143,13 +144,13 @@ const refreshAccessToken = asyncHandler<Request,Response>(async (req, res) => {
   const incomingRefreshToken =
     req.cookies.refreshToken || req.body.refreshToken;
   if (!incomingRefreshToken) {
-    throw new ApiError(401, "Unauthorized access");
+    throw new ApiError(StatusCodes.UNAUTHORIZED, "Unauthorized access");
   }
 
   try {
     const decodedToken = verifyRefreshToken(incomingRefreshToken);
     if (!decodedToken || typeof decodedToken === "string") {
-      throw new ApiError(401, "Invalid refresh token! Unauthorized request");
+      throw new ApiError(StatusCodes.UNAUTHORIZED, "Invalid refresh token! Unauthorized request");
     }
     const userFromDB = await prisma.user.findUnique({
       where: {
@@ -175,12 +176,12 @@ const refreshAccessToken = asyncHandler<Request,Response>(async (req, res) => {
     const { accessToken, newRefreshToken } =
       await generateAccessAndRefreshToken(userFromDB.id);
     return res
-      .status(200)
+      .status(StatusCodes.OK)
       .cookie("accessToken", accessToken, options)
       .cookie("refreshToken", newRefreshToken, options)
       .json(
         new ApiResponse(
-          201,
+          StatusCodes.OK,
           { accessToken, refreshToken: newRefreshToken },
           "Access token refreshed successfully!"
         )
@@ -198,8 +199,8 @@ const refreshAccessToken = asyncHandler<Request,Response>(async (req, res) => {
 //get profile
 const getUserProfile = asyncHandler<Request,Response>(async (req, res) => {
   res
-    .status(201)
-    .json(new ApiResponse(200, req.user, "User fetched successfully"));
+    .status(StatusCodes.OK)
+    .json(new ApiResponse(StatusCodes.OK, req.user, "User fetched successfully"));
 });
 
 export { loginUser, logoutUser, getUserProfile, refreshAccessToken };

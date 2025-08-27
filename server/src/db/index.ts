@@ -4,8 +4,8 @@ const connectDB = async () => {
   try {
     await prisma.$connect();
     console.log("✅ Successfully connected to Neon PostgreSQL");
-  } catch{
-    console.error("❌ Error connecting to Neon DB:");
+  } catch(err){
+    console.error("❌ Error connecting to Neon DB:", err);
     process.exit(1);
   }
 };

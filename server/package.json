@@ -13,6 +13,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.873.0",
     "@prisma/client": "^6.11.1",
     "@types/jsonwebtoken": "^9.0.10",
     "@types/multer": "^2.0.0",
@@ -22,6 +23,7 @@
     "dotenv": "^17.2.0",
     "express": "^5.1.0",
     "google-auth-library": "^10.2.0",
+    "http-status-codes": "^2.3.0",
     "jsonwebtoken": "^9.0.2",
     "multer": "^2.0.1",
     "nodemailer": "^7.0.5",
