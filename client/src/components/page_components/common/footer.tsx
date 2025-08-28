@@ -1,3 +1,4 @@
+import { PreviewLink } from "@/components/ui/link-preview";
 import {  Twitter, Github, Linkedin } from "lucide-react";
 
 export default function Footer() {
@@ -10,9 +11,9 @@ export default function Footer() {
             <h2 className="text-xl font-semibold dts">DragThatShit</h2>
             <p className="mt-3 text-sm">
               A product by{" "}
-              <a href="https://www.linkedin.com/in/shushant-priyadarshi/" target="_blank">
+              <PreviewLink imagelink="https://imgs.search.brave.com/-6XIQiMQSKzN0dm2V3DFHiMut8I9QCTIJek9BAZNeio/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YTEudGVub3IuY29t/L20vMEw3WDhiUWww/cWdBQUFBZC9zaGlu/Y2hhbi1iYXVuYS5n/aWY.gif"  link="https://www.linkedin.com/in/shushant-priyadarshi/">
                 <span className="dts font-semibold">This Guy</span>
-              </a>
+              </PreviewLink>
             </p>
           </div>
 

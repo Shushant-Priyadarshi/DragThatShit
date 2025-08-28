@@ -13,7 +13,7 @@ const HeroSection = () => {
               <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
             </span>
             {/* Your Text */}
-            Now Live. Get Started for free
+            Backed By Sydney Sweeney
           </span>
         </div>
         <h1 className="mb-4 text-center text-7xl font-bold">
