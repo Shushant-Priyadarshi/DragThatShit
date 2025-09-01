@@ -20,11 +20,11 @@ export const googleClient = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 
 import userRouter from "./routes/user.routes";
 import resumeRouter from "./routes/resume.routes";
-
+import paymentRouter from "./routes/payment.routes"
 
 //routes
 app.use("/api/v1/user", userRouter);
 app.use("/api/v1/resume", resumeRouter);
-
+app.use("/api/v1/payment",paymentRouter)
 
 export { app };

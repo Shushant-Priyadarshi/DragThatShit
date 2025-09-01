@@ -22,7 +22,7 @@ model User{
   refreshToken String?
   resumes Resume[]
   role    ROLE @default(USER)
-  resumeLimit Int  @default(1)
+  resumeLimit Int  @default(2)
   createdAt      DateTime    @default(now())
   updatedAt      DateTime    @updatedAt
 }

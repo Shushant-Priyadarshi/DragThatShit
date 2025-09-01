@@ -6,8 +6,8 @@ const router = Router();
 
 
 router.route("/upload").post(verifyJwt,upload.single("resume"),uploadResume)
-router.route("/get/all").post(verifyJwt,getAllResumes)
-router.route("/get/:resumeId").post(verifyJwt,getResumeById)
-router.route("/delete/:resumeId").post(verifyJwt,deleteResumeById)
+router.route("/get/all").get(verifyJwt,getAllResumes)
+router.route("/get/:resumeId").get(verifyJwt,getResumeById)
+router.route("/delete/:resumeId").delete(verifyJwt,deleteResumeById)
 
 export default router
